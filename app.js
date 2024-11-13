@@ -15,12 +15,14 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
-var indexRouter = require("./src/routes/index");
-var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
-var medidasRouter = require("./src/routes/medidas");
-var aquariosRouter = require("./src/routes/aquarios");
-var empresasRouter = require("./src/routes/empresas");
+var usuarioRouter = require("./src/routes/usuario");
+var gaiolaRouter = require("./src/routes/gaiola");
+var sensorTempRouter = require("./src/routes/sensorTemp");
+var sensorBloqueioRouter = require("./src/routes/sensorBloqueio");
+var medidasBloqueioRouter = require("./src/routes/medidaBloqueio");
+var medidasTempRouter = require("./src/routes/medidaTemp");
+var vanRouter = require("./src/routes/van");
+var empresasRouter = require("./src/routes/empresa");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,12 +30,16 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
-app.use("/", indexRouter);
-app.use("/usuarios", usuarioRouter);
-app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter);
-app.use("/aquarios", aquariosRouter);
-app.use("/empresas", empresasRouter);
+app.use("/usuario", usuarioRouter);
+app.use("/gaiola", gaiolaRouter);
+app.use("/sensorTemp", sensorTempRouter);
+app.use("/sensorBloqueio", sensorBloqueioRouter);
+app.use("/medidaBloqueio", medidaBloqueioRouter);
+app.use("/medidaTemp", medidaTempRouter);
+app.use("/van", vanRouter);
+app.use("/empresa", empresaRouter);
+
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
